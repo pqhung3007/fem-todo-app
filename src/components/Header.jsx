@@ -14,7 +14,7 @@ function Header() {
         todo
       </h1>
       <button onClick={() => dispatch(toggleTheme())}>
-        <img src={lightMode ? moonIcon : sunIcon} alt="" className="w-8 h-8" />
+        <img src={lightMode ? moonIcon : sunIcon} alt="" className="w-6 h-6" />
       </button>
     </div>
   );

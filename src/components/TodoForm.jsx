@@ -16,7 +16,7 @@ function TodoForm() {
       </label>
       <input
         type="text"
-        className="p-4 pl-12 mt-4 w-full focus:outline-1 focus:outline-purple-400 placeholder:text-gray-400 rounded-lg"
+        className="p-4 pl-12 mt-4 w-full focus:outline-1 focus:outline-purple-400 bg-white dark:bg-darkDesaturatedBlue placeholder:text-gray-400 dark:text-gray-400 rounded-lg"
         placeholder="Create a new todo.."
         value={input}
         onChange={handleChange}
