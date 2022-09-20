@@ -1,9 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { removeTodo } from "../features/todoSlice";
 import iconCross from "../images/icon-cross.svg";
 import iconCheck from "../images/icon-check.svg";
 
 function TodoItem({ todo }) {
   const { id, content } = todo;
+  const dispatch = useDispatch();
 
   return (
     <div className="border-b border-gray-100 dark:border-slate-500 md:px-6 py-4 flex justify-between items-center">
@@ -14,7 +17,7 @@ function TodoItem({ todo }) {
         </div>
         <p className="text-gray-900 dark:text-slate-200">{content}</p>
       </div>
-      <button type="submit">
+      <button type="submit" onClick={() => dispatch(removeTodo({ id }))}>
         <img src={iconCross} alt="cross" className="" />
       </button>
     </div>

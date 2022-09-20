@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import data from "../data";
+import { useSelector } from "react-redux";
 import TodoItem from "./TodoItem";
 
 function TodoList() {
-  const [todos, setTodos] = useState(data);
+  const { allTodos } = useSelector((state) => state.todo);
   return (
     <div className="p-4 mt-4 rounded-lg bg-white dark:bg-darkDesaturatedBlue">
-      {todos.map((todo) => {
+      {allTodos.map((todo) => {
         return <TodoItem key={todo.id} todo={todo} />;
       })}
 

@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../features/todoSlice";
 
 function TodoForm() {
-  const [input, setInput] = useState("");
+  const dispatch = useDispatch();
+  const inputRef = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitted");
+    if (inputRef.current.value.trim()) {
+      const newTodo = {
+        id: Math.floor(Math.random() * 1000),
+        content: inputRef.current.value,
+        completed: false,
+      };
+      dispatch(addTodo(newTodo));
+    }
+    inputRef.current.value = "";
   };
-  const handleChange = (e) => setInput(e.target.value);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -18,10 +28,9 @@ function TodoForm() {
         type="text"
         className="p-4 pl-12 mt-4 w-full focus:outline-1 focus:outline-purple-400 bg-white dark:bg-darkDesaturatedBlue placeholder:text-gray-400 dark:text-gray-400 rounded-lg"
         placeholder="Create a new todo.."
-        value={input}
-        onChange={handleChange}
+        ref={inputRef}
       />
-      <button className="hidden" type="submit">
+      <button hidden type="submit">
         Create
       </button>
     </form>
