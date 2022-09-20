@@ -34,9 +34,15 @@ function TodoList() {
 
   return (
     <div className="p-4 mt-4 rounded-lg bg-white dark:bg-darkDesaturatedBlue">
-      {renderedTodos.map((todo) => {
-        return <TodoItem key={todo.id} todo={todo} />;
-      })}
+      {renderedTodos.length > 0 ? (
+        renderedTodos.map((todo) => {
+          return <TodoItem key={todo.id} todo={todo} />;
+        })
+      ) : (
+        <p className="text-center text-gray-900 dark:text-slate-200 my-8">
+          You currently have no task :D
+        </p>
+      )}
 
       <div className="flex justify-between px-6 pt-6 pb-4 text-slate-600">
         <p>{activeTodos.length} tasks left</p>
