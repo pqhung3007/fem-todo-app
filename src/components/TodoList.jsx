@@ -1,23 +1,73 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  showAllTodos,
+  showActiveTodos,
+  showCompletedTodos,
+  clearCompletedTodos,
+} from "../features/todoSlice";
 import TodoItem from "./TodoItem";
 
 function TodoList() {
-  const { allTodos } = useSelector((state) => state.todo);
+  const {
+    allTodos,
+    activeTodos,
+    completedTodos,
+    showAll,
+    showActive,
+    showCompleted,
+  } = useSelector((state) => state.todo);
+  const dispatch = useDispatch();
+
+  let renderedTodos;
+  if (showAll) {
+    renderedTodos = allTodos;
+  } else if (showActive) {
+    renderedTodos = activeTodos;
+  } else if (showCompleted) {
+    renderedTodos = completedTodos;
+  }
+
   return (
     <div className="p-4 mt-4 rounded-lg bg-white dark:bg-darkDesaturatedBlue">
-      {allTodos.map((todo) => {
+      {renderedTodos.map((todo) => {
         return <TodoItem key={todo.id} todo={todo} />;
       })}
 
       <div className="flex justify-between px-6 pt-6 pb-4 text-slate-600">
-        <p className="">5 items left</p>
+        <p>{activeTodos.length} tasks left</p>
         <div className="flex space-x-3 ml-4">
-          <button className="text-blue-500">All</button>
-          <button className="">Active</button>
-          <button className="">Completed</button>
+          <button
+            className={`${
+              showAll && "text-blue-500"
+            } hover:text-blue-500 duration-150`}
+            onClick={() => dispatch(showAllTodos())}
+          >
+            All
+          </button>
+          <button
+            className={`${
+              showActive && "text-blue-500"
+            } hover:text-blue-500 duration-150`}
+            onClick={() => dispatch(showActiveTodos())}
+          >
+            Active
+          </button>
+          <button
+            className={`${
+              showCompleted && "text-blue-500"
+            } hover:text-blue-500 duration-150`}
+            onClick={() => dispatch(showCompletedTodos())}
+          >
+            Completed
+          </button>
         </div>
-        <button>Clear Completed</button>
+        <button
+          className="hover:text-blue-500 duration-150"
+          onClick={() => dispatch(clearCompletedTodos())}
+        >
+          Clear Completed
+        </button>
       </div>
     </div>
   );

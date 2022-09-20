@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
+import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../features/todoSlice";
 
@@ -8,6 +9,7 @@ function TodoForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (inputRef.current.value.trim()) {
       const newTodo = {
         id: Math.floor(Math.random() * 1000),
@@ -17,6 +19,7 @@ function TodoForm() {
       dispatch(addTodo(newTodo));
     }
     inputRef.current.value = "";
+    toast.success("Added new todo");
   };
 
   return (
