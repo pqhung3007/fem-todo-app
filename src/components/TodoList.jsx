@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   showAllTodos,
@@ -27,6 +27,10 @@ function TodoList() {
   } else if (showCompleted) {
     renderedTodos = completedTodos;
   }
+
+  useEffect(() => {
+    window.localStorage.setItem("todo", JSON.stringify(renderedTodos));
+  }, [renderedTodos]);
 
   return (
     <div className="p-4 mt-4 rounded-lg bg-white dark:bg-darkDesaturatedBlue">

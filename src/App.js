@@ -7,6 +7,7 @@ import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 import Footer from './components/Footer';
 
+
 function App() {
   const { lightMode } = useSelector((state) => state.theme);
 

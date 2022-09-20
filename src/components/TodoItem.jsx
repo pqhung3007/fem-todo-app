@@ -10,7 +10,6 @@ function TodoItem({ todo }) {
 
   const markCompleteHandler = () => {
     dispatch(markTodoCompleted({ id }));
-    document.getElementById("#hello").removeAttribute("onClick");
   };
 
   return (
