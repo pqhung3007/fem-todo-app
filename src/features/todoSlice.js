@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    allTodos: JSON.parse(window.localStorage.getItem('todo') || []),
-    activeTodos: JSON.parse(window.localStorage.getItem('todo') || []).filter((todo) => !todo.completed),
+    // allTodos: JSON.parse(window.localStorage.getItem('todo')) || [],
+    // activeTodos: JSON.parse(window.localStorage.getItem('todo') || []).filter((todo) => !todo.completed),
+    allTodos: [],
+    activeTodos: [],
     completedTodos: [],
     showAll: true,
     showActive: false,

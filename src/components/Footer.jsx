@@ -11,7 +11,7 @@ const Footer = () => {
         .
       </p>
       <p>
-        Coded by <a href="http://cyishere.dev">Quang Hung Pham</a>.
+        Coded by <a href="https://github.com/pqhung3007">Quang Hung Pham</a>.
       </p>
     </footer>
   );
