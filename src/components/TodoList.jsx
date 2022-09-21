@@ -46,7 +46,7 @@ function TodoList() {
 
       <div className="flex justify-between px-6 pt-6 pb-4 text-slate-600">
         <p>{activeTodos.length} tasks left</p>
-        <div className="flex space-x-3 ml-4">
+        <div className="flex space-x-3 ml-4 hidden md:block">
           <button
             className={`${
               showAll && "text-blue-500"
@@ -77,6 +77,33 @@ function TodoList() {
           onClick={() => dispatch(clearCompletedTodos())}
         >
           Clear Completed
+        </button>
+      </div>
+
+      <div className="flex justify-center space-x-3 ml-4 block md:hidden">
+        <button
+          className={`${
+            showAll && "text-blue-500"
+          } hover:text-blue-500 duration-150`}
+          onClick={() => dispatch(showAllTodos())}
+        >
+          All
+        </button>
+        <button
+          className={`${
+            showActive && "text-blue-500"
+          } hover:text-blue-500 duration-150`}
+          onClick={() => dispatch(showActiveTodos())}
+        >
+          Active
+        </button>
+        <button
+          className={`${
+            showCompleted && "text-blue-500"
+          } hover:text-blue-500 duration-150`}
+          onClick={() => dispatch(showCompletedTodos())}
+        >
+          Completed
         </button>
       </div>
     </div>
