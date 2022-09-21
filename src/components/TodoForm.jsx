@@ -17,9 +17,11 @@ function TodoForm() {
         completed: false,
       };
       dispatch(addTodo(newTodo));
+      toast.success("Added new todo");
+    } else {
+      toast.error("Todo cannot be empty");
     }
     inputRef.current.value = "";
-    toast.success("Added new todo");
   };
 
   return (
