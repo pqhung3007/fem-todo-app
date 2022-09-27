@@ -6,7 +6,11 @@ const initialState = {
     completedTodos: [],
     showAll: true,
     showActive: false,
-    showCompleted: false
+    showCompleted: false,
+    updatedTodo: {
+        item: {},
+        edit: false
+    }
 }
 
 const todoSlice = createSlice({
@@ -20,6 +24,16 @@ const todoSlice = createSlice({
         removeTodo: (state, action) => {
             state.allTodos = state.allTodos.filter((todo) => todo.id !== action.payload.id)
             state.activeTodos = state.allTodos.filter((todo) => todo.id !== action.payload.id)
+        },
+        editTodo: (state, action) => {
+            state.updatedTodo = {
+                item: action.payload.todo,
+                edit: true
+            }
+        },
+        updateTodo: (state, action) => {
+            state.allTodos = state.allTodos.map((todo) => todo.id === action.payload[0] ? { ...todo, ...action.payload[1] } : todo)
+            state.updatedTodo = { item: {}, edit: false }
         },
         markTodoCompleted: (state, action) => {
             state.allTodos.forEach(todo => {
@@ -56,6 +70,8 @@ const todoSlice = createSlice({
 export const {
     addTodo,
     removeTodo,
+    editTodo,
+    updateTodo,
     markTodoCompleted,
     showAllTodos,
     showActiveTodos,
